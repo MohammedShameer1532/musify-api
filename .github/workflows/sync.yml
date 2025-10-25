@@ -1,0 +1,23 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # Runs daily at midnight UTC
+  workflow_dispatch:       # Allows manual run
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your fork
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Sync fork with upstream
+        uses: tgymnich/fork-sync@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: sumitkolhe        # 👈 Original repo owner
+          repo: jiosaavn-api       # 👈 Original repo name
+          merge_method: merge
