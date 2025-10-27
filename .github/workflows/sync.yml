@@ -17,7 +17,9 @@ jobs:
       - name: Sync fork with upstream
         uses: tgymnich/fork-sync@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          owner: sumitkolhe        # 👈 Original repo owner
-          repo: jiosaavn-api       # 👈 Original repo name
-          merge_method: merge
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: sumitkolhe          # 👈 Upstream owner (original repo)
+          repo: jiosaavn-api         # 👈 Upstream repo name
+          head: master               # 👈 Your fork's branch name
+          base: main                 # 👈 Upstream branch name
+          merge_method: merge        # Can be 'merge', 'rebase', or 'squash'
